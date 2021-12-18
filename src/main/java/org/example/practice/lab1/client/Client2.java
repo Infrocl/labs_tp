@@ -31,6 +31,8 @@ public class Client2 {
                 Matrix.writeMatrix(output, secondMatrix);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
+                input.close();
+                output.close();
             }
             int flag = input.read();
             if (flag == 1) {
