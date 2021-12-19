@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.util.Locale;
 
 public class Matrix {
-    private final double[][] matrix;
+    private final double[][] matrix; //инкапсулируем массив-матрицу
 
     public Matrix(int numberOfRows, int numberOfColumns) {
         if (numberOfRows == 0) {
@@ -91,7 +91,7 @@ public class Matrix {
             }
             return matrix;
         } catch (ParseException e) {
-            return new Matrix(0,0);
+            return new Matrix(0, 0);
         }
     }
 }
