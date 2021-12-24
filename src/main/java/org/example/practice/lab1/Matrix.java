@@ -28,7 +28,7 @@ public class Matrix {
 
     public double getAt(int m, int n) {
         return matrix[m][n];
-    }
+    } //возвращает элемент по указанному индексу
 
     public void setAt(int m, int n, double value) {
         matrix[m][n] = value;
@@ -36,7 +36,7 @@ public class Matrix {
 
     public static Matrix multiply(Matrix firstMatrix, Matrix secondMatrix) {
         if (firstMatrix.getNumberOfColumns() != secondMatrix.getNumberOfRows()) {
-            throw new IllegalArgumentException("Ошибка: число столбцов первой матрицы не равно числу строк второй матрицы");
+            throw new IllegalArgumentException("Ошибка: матрицы не согласованы!");
         }
         Matrix result = new Matrix(firstMatrix.getNumberOfRows(), secondMatrix.getNumberOfColumns());
         for (int i = 0; i < firstMatrix.getNumberOfRows(); i++) {

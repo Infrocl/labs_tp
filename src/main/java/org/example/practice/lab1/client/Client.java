@@ -12,7 +12,6 @@ public class Client {
             String[] fileNames = new String[3]; //массив названий файлов
             Matrix firstMatrix;
             Matrix secondMatrix;
-
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); //запуск потока чтения с консоли
             System.out.println("Введите имя файла первой матрицы: ");
             fileNames[0] = in.readLine();
