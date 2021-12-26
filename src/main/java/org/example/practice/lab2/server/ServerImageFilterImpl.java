@@ -13,12 +13,10 @@ public class ServerImageFilterImpl extends UnicastRemoteObject implements Server
     @Serial
     private static final long serialVersionUID = -3931008145305629709L;
     ByteArrayOutputStream baos;
-
     // инициализация сервера
     public ServerImageFilterImpl() throws RemoteException {
         super();
     }
-
     @Override
     public byte[] filter(byte[] inputImageArray) {
         try {
@@ -47,7 +45,7 @@ public class ServerImageFilterImpl extends UnicastRemoteObject implements Server
             }
             //применяем фильтр
             for (int i = 2; i < width - 2; i++) {
-                for (int j = 2; j < height - 3; j++) {
+                for (int j = 3; j < height - 3; j++) {
                     Kernel kernel = new Kernel(9);
                     kernel.setValue(inputImagePixels[i][j], 2, i, j);
                     for (int k = 0, counter = -2; k < 2; k++, counter++) {
@@ -61,21 +59,15 @@ public class ServerImageFilterImpl extends UnicastRemoteObject implements Server
                 }
             }
             baos = new ByteArrayOutputStream();
-            // явно указываем расширение файла для простоты реализации
             ImageIO.write(result, "png", baos);
-
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return baos.toByteArray();
     }
 
     public static void main(String[] args) {
-        String localhost = "127.0.0.1";
-        String RMI_HOSTNAME = "java.rmi.server.hostname";
         try {
-            System.setProperty(RMI_HOSTNAME, localhost);
-            // Создание удаленного RMI объекта
             ServerImageFilter service = new ServerImageFilterImpl();
             String serviceName = "FilterService";
             // Регистрация удаленного RMI объекта в реестре rmi registry
